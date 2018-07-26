@@ -5,27 +5,35 @@ function comments(state = [], action) {
         id: action.id,
         text: action.text
         votes: 0
-      }
-      , ...state.comments];
+      }, ...state.comments];
+
     case REMOVE_COMMENT:
-      return [{
-        comments: state.comments.filter(comment => comment.id !== action.id)
-      }];
+      return state.comments.filter(comment => comment.id !== action.id);
+
     case EDIT_COMMENT:
-      return [{
-          id: action.id,
-          text: action.text,
-        }];
+      state.map(comment => {
+        if(comment.id === action.id) {
+          return {text: action.text}
+        }
+        return comment;
+      });
+
     case THUMB_UP_COMMENT:
-      return [{
-          id: action.id,
-          like: +1
-        }];
+      state.map(comment => {
+        if(comment.id === action.id) {
+          return {votes: comment.votes + 1}
+        }
+        return comment;
+      });
+
     case THUMB_DOWN_COMMENT:
-      return [{
-          id: action.id,
-          like: -1
-        }];
+      state.map(comment => {
+        if(comment.id === action.id) {
+          return {votes: comment.votes - 1}
+        }
+        return comment;
+      });
+
     default:
       return state;
   }

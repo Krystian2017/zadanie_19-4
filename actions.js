@@ -43,24 +43,24 @@ const boundEditComment = (text, id) => dispatch(editComment(text, id));
 
 // THUMB_UP_COMMENT
 
-function thumbUpComment(like, id) {
+function thumbUpComment(votes, id) {
   return {
     type: THUMB_UP_COMMENT,
     id,
-    like: + 1
+    votes: + 1
   }
 };
 
-const boundThumbUpComment = (like, id) => dispatch(thumbUpComment(like, id));
+const boundThumbUpComment = (votes, id) => dispatch(thumbUpComment(votes, id));
 
 // THUMB_DOWN_COMMENT
   
-function thumbDownComment (like, id) {
+function thumbDownComment (votes, id) {
   return {
     type: THUMB_DOWN_COMMENT,
     id,
-    like: - 1
+    votes: - 1
   }
 };
 
-const boundThumbDownComment = (like, id) => dispatch(thumbDownComment(like, id));
+const boundThumbDownComment = (votes, id) => dispatch(thumbDownComment(votes, id));
